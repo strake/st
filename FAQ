@@ -22,12 +22,9 @@ you a list of available terminals, but you’ll most likely switch between xterm
 st or st-256color. The default value for TERM can be changed in config.h
 (TNAME).
 
-## How do I scroll back up?
+## How to scroll?
 
-Using a terminal multiplexer.
-
-* `st -e tmux` using C-b [
-* `st -e screen` using C-a ESC
+By default, use Shift-PgUp and Shift-PgDn.
 
 ## Why doesn't the Del key work in some programs?
 
