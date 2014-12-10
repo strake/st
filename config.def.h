@@ -7,6 +7,7 @@
  */
 static char font[] = "Liberation Mono:pixelsize=12:antialias=false:autohint=false";
 static int borderpx = 2;
+static int histsize = 2000;
 static char shell[] = "/bin/sh";
 static char *utmp = NULL;
 
@@ -120,6 +121,8 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
 	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
+	{ ShiftMask,		XK_Page_Up,	kscrollup,	{.i = -1} },
+	{ ShiftMask,		XK_Page_Down,	kscrolldown,	{.i = -1} },
 };
 
 /*
