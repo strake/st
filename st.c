@@ -1226,6 +1226,14 @@ sigchld(int a) {
 }
 
 void
+xtcsetcc(int fd, int cc, int c) {
+	struct termios termios;
+	if(tcgetattr(fd, &termios) < 0) die("tcgetattr failed: %s\n", strerror(errno));
+	termios.c_cc[cc] = c;
+	if(tcsetattr(fd, TCSADRAIN, &termios) < 0) die("tcsetattr failed: %s\n", strerror(errno));
+}
+
+void
 ttynew(void) {
 	int m, s;
 	struct winsize w = {term.row, term.col, 0, 0};
@@ -1245,6 +1253,7 @@ ttynew(void) {
 		dup2(s, STDERR_FILENO);
 		if(ioctl(s, TIOCSCTTY, NULL) < 0)
 			die("ioctl TIOCSCTTY failed: %s\n", strerror(errno));
+		xtcsetcc(s, VERASE, 0x08);
 		close(s);
 		close(m);
 		execsh();
